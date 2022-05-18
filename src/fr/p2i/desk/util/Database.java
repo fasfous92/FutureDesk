@@ -58,21 +58,22 @@ public class Database {
     }
 
     // Sognus code:
-    public void insert() throws Exception {
+    public void insert(SensorData sd) throws Exception {
 
 
-        Connection c = null;
+        Connection c = getConnection();
         Statement s = null;
 
 
         s = c.createStatement();
 
 
-        String[] queries = new String[]{"CREATE TABLE ",""};
-        for (String query : queries) {
-            if (query != null && query != "")
-                s.execute(query);
+        StringBuilder queries = new StringBuilder("INSERT INTO " + sd.type + " VALUES (");
+        String[] st = sd.toString().split(";");
+        for (String a : st){
+            queries.append(a).append(",");
         }
-
+        queries.append(");");
+        s.executeQuery(queries.toString());
     }
 }

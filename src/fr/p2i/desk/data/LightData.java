@@ -1,6 +1,8 @@
 package fr.p2i.desk.data;
 
-public class LightData {
+import fr.p2i.desk.util.SensorData;
+
+public class LightData extends SensorData {
 
     private int r;
     private int g;
@@ -8,6 +10,7 @@ public class LightData {
     private int light;
     private long timestamp;
     public LightData(int r,int g,int b,int light){
+        this.type = "lights";
         timestamp=System.currentTimeMillis();
         this.r=r;
         this.g=g;

@@ -1,5 +1,7 @@
 package fr.p2i.desk.util;
 
+import fr.p2i.desk.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,15 @@ public class DataHandler<E extends SensorData> {
     }
 
     public void push(){
-        String statement = "INSERT INTO db.light";
+        for(E a : tempList) {
+            try {
+                Main.db.insert(a);
+                list.add(a);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    tempList = new ArrayList<>();
+
     }
 }

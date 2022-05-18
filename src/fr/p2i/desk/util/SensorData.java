@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class SensorData {
 
+    public String type;
     Map<String,List<Integer>> mp= new HashMap<>();
     public Map<String,Integer> mean(){
         Map<String,Integer> map = new HashMap<>();
