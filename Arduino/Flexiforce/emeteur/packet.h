@@ -1,4 +1,4 @@
-struct packet_flexiforce
+struct packet
 {
     // We send 32 bytes.
     // Each bit correspond to the data of one flexiforce.
