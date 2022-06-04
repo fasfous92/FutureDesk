@@ -8,8 +8,6 @@ public class DisplayPressure extends JFrame {
     public JPanel P2;
     public JPanel P3;
     public JPanel P4;
-    public double max= 2000;
-    public double min=100;
 
     public DisplayPressure() {
         this.setBounds(300,300,300, 300);
@@ -54,28 +52,28 @@ public class DisplayPressure extends JFrame {
         
 
     }
-    public double mapG(double val){
-        double x=-188/(this.max-this.min);
-        double b=255-(this.min*x);
+    public double mapG(double val, double Max, double Min){
+        double x=-188/(Max-Min);
+        double b=255-(Min*x);
         double G=val*x+b;
       
         return G;
     }
 
-    public double mapR(double val){
-        double x=-135/(this.max-this.min);
-        double b=255-this.min*x;
+    public double mapR(double val, double Max, double Min){
+        double x=-135/(Max-Min);
+        double b=255-Min*x;
         double R=val*x+b;
 
         return R;
     }
 
-    public void setColor(JPanel P, double val) {
-        if (val<=900) {
-            P.setBackground(new Color((int) this.mapR(val),0, 0));
+    public void setColor(JPanel P, double val,double Max, double Min, double critical) {
+        if (val<=critical) {
+            P.setBackground(new Color((int) this.mapR(val,Max,Min),0, 0));
             System.out.println(P + "changed");
         } else {
-            P.setBackground(new Color(0,(int) this.mapG(val),0));
+            P.setBackground(new Color(0,(int) this.mapG(val,Max,Min),0));
         }
     }
 }

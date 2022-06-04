@@ -5,8 +5,6 @@ import java.awt.*;
 public class DisplayFlexion extends JFrame {
     public int Height=400;
     public int Width=500;
-    public double max=90; //max value of angle of inclination
-    public double min=0; // min value of angle of inclination
     public ImageIcon icon;
     public JLabel image;
     public JPanel F1;
@@ -62,31 +60,31 @@ public class DisplayFlexion extends JFrame {
 
         setVisible(true);
     }
-    public double mapG(double val){
-        double x=-188/(this.max-this.min);
-        double b=255-(this.min*x);
+    public double mapG(double val, double Max, double Min){
+        double x=-188/(Max-Min);
+        double b=255-(Min*x);
         double G=val*x+b;
         
         return G;
     }
 
-    public double mapR(double val){
-        double x=-135/(this.max-this.min);
-        double b=255-this.min*x;
+    public double mapR(double val, double Max, double Min){
+        double x=-135/(Max-Min);
+        double b=255-Min*x;
         double R=val*x+b;
         System.out.println("R="+R);
        
         return R;
     }
 
-    public void setColor(JPanel P, double val) {
-        if (val>=45) {
+    public void setColor(JPanel P, double val, double Max, double Min, double Critical) {
+        if (val>=Critical) {
 
-            P.setBackground(new Color((int) this.mapR(val),0,0));
+            P.setBackground(new Color((int) this.mapR(val,Max,Min),0,0));
             System.out.println(P + "changed");
         } else {
 
-            P.setBackground(new Color(0,(int) this.mapG(val),0));
+            P.setBackground(new Color(0,(int) this.mapG(val,Max,Min),0));
         }
     }
 
